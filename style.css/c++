@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #020303;
+    color: rgb(9, 155, 33);
+    min-height: 100vh;
+}
+
+.app {
+    max-width: 500px;
+    margin: auto;
+    padding: 25px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #1e58bb;
+}
+
+.balance {
+    margin-top: 40px;
+}
+
+.balance p {
+    color: #05a920;
+}
+
+.balance h2 {
+    display: inline;
+    font-size: 48px;
+}
+
+.balance span {
+    color: #1a0ac8af;
+    font-weight: bold;
+}
+
+.coin {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    border: none;
+    margin: 40px auto;
+    display: block;
+    font-size: 100px;
+    cursor: pointer;
+    background: #070605;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: transform 0.08s;
+}
+
+.coin:active {
+    transform: scale(0.92);
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.stat {
+    background: #0564e8;
+    border-radius: 15px;
+    padding: 18px;
+    flex: 1;
+}
+
+.stat span {
+    display: #0564e8;
+    color: #9ca3af;
+    margin-bottom: 8px;
+}
+
+.stat strong {
+    font-size: 22px;
+}
+
+.daily {
+    width: 100%;
+    margin-top: 25px;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    background: #2563eb;
+    color: rgb(9, 9, 9);
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#message {
+    margin-top: 20px;
+    color: #facc15;
+}

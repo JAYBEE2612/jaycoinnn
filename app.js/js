@@ -1,0 +1,101 @@
+// Telegram Mini App
+const tg = window.Telegram.WebApp;
+
+tg.ready();
+tg.expand();
+
+let coins = Number(localStorage.getItem("coins")) || 0;
+let energy = Number(localStorage.getItem("energy")) || 100;
+let level = Number(localStorage.getItem("level")) || 1;
+
+const coinsElement = document.getElementById("coins");
+const energyElement = document.getElementById("energy");
+const levelElement = document.getElementById("level");
+const tapButton = document.getElementById("tapButton");
+const dailyButton = document.getElementById("dailyButton");
+const message = document.getElementById("message");
+
+
+// Display Telegram user's name
+if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+    const user = tg.initDataUnsafe.user;
+
+    document.getElementById("welcome").textContent =
+        Welcome, ${user.first_name}!;
+}
+
+
+// Update screen
+function updateScreen() {
+
+    coinsElement.textContent = coins;
+    energyElement.textContent = energy;
+    levelElement.textContent = level;
+
+    localStorage.setItem("coins", coins);
+    localStorage.setItem("energy", energy);
+    localStorage.setItem("level", level);
+}
+
+
+// Tapping
+tapButton.addEventListener("click", function () {
+
+    if (energy <= 0) {
+
+        message.textContent = "⚡ No energy left!";
+        return;
+
+    }
+
+    coins += 1;
+    energy -= 1;
+
+    // Level up every 10000 coins
+    level = Math.floor(coins / 10000) + 1;
+
+    message.textContent = "+1 TAP 🪙";
+
+    updateScreen();
+});
+
+
+// Daily reward
+dailyButton.addEventListener("click", function () {
+
+    const today = new Date().toDateString();
+    const lastReward = localStorage.getItem("dailyReward");
+
+    if (lastReward === today) {
+
+        message.textContent = "🎁 You already collected today's reward.";
+
+        return;
+    }
+
+    coins += 50;
+
+    localStorage.setItem("dailyReward", today);
+
+    message.textContent = "🎉 You received +100 TAP!";
+
+    updateScreen();
+});
+
+
+// Restore energy
+setInterval(function () {
+
+    if (energy < 100) {
+
+        energy += 10;
+
+        updateScreen();
+
+    }
+
+}, 3000);
+
+
+// Initial display
+updateScreen();
